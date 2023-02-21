@@ -1,0 +1,48 @@
+<?php
+
+//load composer
+require_once __DIR__ . '/../vendor/autoload.php';
+
+use ThiagoMeloo\TerminalDebug\Socket\Server;
+use ThiagoMeloo\TerminalDebug\Socket\Client;
+
+//get args from command line
+$argv = $_SERVER['argv'];
+
+$server = null;
+$client = null;
+
+foreach ($argv as $arg) {
+    if($arg == '-s' || $arg == '--server'){
+        $server = true;
+    }else if ($arg == '-c' || $arg == '--client'){
+        $client = true;
+    }else if($arg == '-m' || $arg == '--message'){
+        $message = $argv[array_search($arg, $argv) + 1];
+    }else if($arg == '-h' || $arg == '--help'){
+        #print message help
+    }
+}
+
+
+
+/**
+ * Run server or client
+ */
+if($server){
+    
+    $options = [];
+    isset($message) ? $options['responseMessage'] = $message : null;
+    $server = new Server($options);
+    $server->run();
+    exit;
+
+}else if($client){
+    
+    $client = new Client([
+        'host' => '127.0.0.1',
+        'port' => 8015
+    ]);
+
+    $client->setMessage($message ?? 'client message.')->run();
+}

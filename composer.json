@@ -1,0 +1,29 @@
+{
+    "name": "thiagomeloo/terminal-debug",
+    "description": "debug and print variables in terminal",
+    "license": "MIT",
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "authors": [
+        {
+            "name": "Thiago Melo",
+            "email": "4thiagomelo5@gmail.com"
+        }
+    ],
+    "require": {
+        "php": "^8.0",
+        "nunomaduro/termwind": "^1.12"
+    },
+    "require-dev": {
+    },
+    "autoload": {
+        "psr-4": {
+            "ThiagoMeloo\\TerminalDebug\\": "src"
+        },
+        "files": [
+            "src/Socket/Functions/Client.php"
+        ]
+    },
+    "bin": ["bin/terminal-debug"]
+    
+}
