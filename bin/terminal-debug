@@ -1,7 +1,7 @@
 <?php
 
-//load composer
-require_once __DIR__ . '/../vendor/autoload.php';
+//load autoload
+include $_composer_autoload_path ?? __DIR__ . '/../vendor/autoload.php';
 
 use ThiagoMeloo\TerminalDebug\Socket\Server;
 use ThiagoMeloo\TerminalDebug\Socket\Client;
