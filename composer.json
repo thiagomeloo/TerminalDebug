@@ -21,7 +21,7 @@
             "ThiagoMeloo\\TerminalDebug\\": "src"
         },
         "files": [
-            "src/Socket/Functions/Client.php"
+            "src/functions.php"
         ]
     },
     "bin": ["bin/terminal-debug"]
