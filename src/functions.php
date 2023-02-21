@@ -1,12 +1,12 @@
 <?php
 
-if (!function_exists('td')) {
+if (!function_exists('tDebug')) {
     
     /**
      * Print a message in terminal debug.
      * @param string|aray|object $element
      */
-    return function (string|array|object $element) {
+    function tDebug(string|array|object $element) {
 
         $client = new \ThiagoMeloo\TerminalDebug\Socket\Client([
             'host' => '127.0.0.1',
