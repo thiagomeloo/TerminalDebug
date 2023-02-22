@@ -3,7 +3,8 @@
 namespace ThiagoMeloo\TerminalDebug\Helpers;
 
 
-class PrettyJson {
+class PrettyJson
+{
 
     /**
      * Transform a json string in a pretty json string with line breaks
@@ -23,8 +24,7 @@ class PrettyJson {
 
         $json = json_encode($json, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
 
-        return PHP_EOL.$json;
-
+        return PHP_EOL . $json;
     }
 
     /**
@@ -38,5 +38,4 @@ class PrettyJson {
         json_decode($string);
         return (json_last_error() == JSON_ERROR_NONE);
     }
-
 }

@@ -9,7 +9,8 @@ use ThiagoMeloo\TerminalDebug\Helpers\PrintConsole;
 /**
  * Socket Server to accept connections and print messages
  */
-class Server implements Runner {
+class Server implements Runner
+{
 
     protected $port = 8015;
     protected $host = '127.0.0.1';
@@ -18,8 +19,8 @@ class Server implements Runner {
 
     protected $responseMessage = 'message received!';
 
-    public function __construct(array $config = []){
-
+    public function __construct(array $config = [])
+    {
         $this->port = $config['port'] ?? $this->port;
         $this->host = $config['host'] ?? $this->host;
 
@@ -28,34 +29,33 @@ class Server implements Runner {
         $this->responseMessage = $config['responseMessage'] ?? $this->responseMessage;
     }
 
-    public function run(){
-
+    public function run()
+    {
         //hide warnings socket bind
         error_reporting(E_ALL ^ E_WARNING);
 
-
         if (socket_bind($this->socket, $this->host, $this->port) === false) {
-            PrintConsole::server('Error: '.socket_strerror(socket_last_error($this->socket)))->error();
+            PrintConsole::server('Error: ' . socket_strerror(socket_last_error($this->socket)))->error();
             PrintConsole::server('Wait a moment and try again', ['type' => 'warning'])->warning();
             exit;
-        }   
-        
+        }
+
         if (socket_listen($this->socket, 5) === false) {
-            PrintConsole::server('Error: '.socket_strerror(socket_last_error($this->socket)), ['type' => 'error']);
+            PrintConsole::server('Error: ' . socket_strerror(socket_last_error($this->socket)), ['type' => 'error']);
             exit;
         }
 
         //show server running
-        PrintConsole::server('Server running on '.$this->host.':'.$this->port, ['type' => 'success'])->success();
-        
+        PrintConsole::server('Server running on ' . $this->host . ':' . $this->port, ['type' => 'success'])->success();
+
         while (true) {
-            
+
             $client = socket_accept($this->socket);
             $data = socket_read($client, 1024);
 
-            if(PrettyJson::isJson($data)){
+            if (PrettyJson::isJson($data)) {
                 PrintConsole::debug($data)->json();
-            }else{
+            } else {
                 PrintConsole::debug($data)->default();
             }
 

@@ -5,6 +5,7 @@ namespace ThiagoMeloo\TerminalDebug\Contracts;
 /**
  * Interface Runner to use in classes that will be executed
  */
-interface Runner {
+interface Runner
+{
     public function run();
 }

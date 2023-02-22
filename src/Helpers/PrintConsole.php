@@ -1,8 +1,11 @@
 <?php
+
 namespace ThiagoMeloo\TerminalDebug\Helpers;
+
 use function Termwind\{render};
 
-class PrintConsole {
+class PrintConsole
+{
 
     /**
      * Variants of print
@@ -41,8 +44,8 @@ class PrintConsole {
      * @param string $text 
      * @param array $options (type => (success | error | warning | info | null), variant => (server | client | debug | null)) 
      */
-    public function __construct(string $text, array $options = []){
-
+    public function __construct(string $text, array $options = [])
+    {
         $type = $options['type'] ?? 'default';
 
         $this->text = $text;
@@ -50,17 +53,17 @@ class PrintConsole {
         $this->variant = self::VARIANTS[$options['variant']] ?? self::VARIANTS['default'];
 
         return $this;
-
     }
 
-    
+
     /**
      * Create a new object print variant server.
      * 
      * @param string $text
      * @param array $options (type => (success | error | warning | info | null))
      */
-    public static function server(){
+    public static function server()
+    {
         $args = func_get_args();
         $args[1]['variant'] = 'server';
         return new self(...$args);
@@ -72,7 +75,8 @@ class PrintConsole {
      * @param string $text
      * @param array $options (type => (success | error | warning | info | null))
      */
-    public static function client(){
+    public static function client()
+    {
         $args = func_get_args();
         $args[1]['variant'] = 'client';
         return new self(...$args);
@@ -84,7 +88,8 @@ class PrintConsole {
      * @param string $text
      * @param array $options (type => (success | error | warning | info | null))
      */
-    public static function debug(){
+    public static function debug()
+    {
         $args = func_get_args();
         $args[1]['variant'] = 'debug';
         return new self(...$args);
@@ -93,7 +98,8 @@ class PrintConsole {
     /**
      * Print text default.
      */
-    public function default(){
+    public function default()
+    {
         $colorClass = self::COLORS['default'];
         $this->print($colorClass);
     }
@@ -101,23 +107,26 @@ class PrintConsole {
     /**
      * Print text success.
      */
-    public function success(){
+    public function success()
+    {
         $colorClass = self::COLORS['success'];
         $this->print($colorClass);
-    }   
+    }
 
     /**
      * Print text error.
      */
-    public function error(){
+    public function error()
+    {
         $colorClass = self::COLORS['error'];
         $this->print($colorClass);
     }
-    
+
     /**
      * Print text warning.
      */
-    public function warning(){
+    public function warning()
+    {
         $colorClass = self::COLORS['warning'];
         $this->print($colorClass);
     }
@@ -125,7 +134,8 @@ class PrintConsole {
     /**
      * Print text info.
      */
-    public function info(){
+    public function info()
+    {
         $colorClass = self::COLORS['info'];
         $this->print($colorClass);
     }
@@ -135,8 +145,8 @@ class PrintConsole {
      * Struct print text.
      * @param string $colorClass class color of background variant
      */
-    protected function print(string $colorClass){
-
+    protected function print(string $colorClass)
+    {
         render(
             <<<HTML
                 <div class="my-1">
@@ -147,15 +157,16 @@ class PrintConsole {
                         {$this->text}
                     </em>
                 </div>
-        HTML);
-        
+        HTML
+        );
     }
 
 
     /**
      * Print text json.
      */
-    public function json(){
+    public function json()
+    {
         //set class by type
         $colorClass = self::COLORS[$this->type] ?? self::COLORS['default'];
 
@@ -173,17 +184,19 @@ class PrintConsole {
                         {$textObj}
                     </pre>
                 </div>
-        HTML);
+        HTML
+        );
     }
 
     /**
      * Print text helper info comands.
      */
-    public static function help(){
+    public static function help()
+    {
 
         //get version in composer.json
         $composer = json_decode(file_get_contents(__DIR__ . '/../../composer.json'), true);
-        $version =   'v'.$composer['version'] ?? 'v0.0.0';
+        $version =   'v' . $composer['version'] ?? 'v0.0.0';
 
         render(<<<HTML
             <table >
@@ -217,7 +230,5 @@ class PrintConsole {
                 <tfoot title="$version" class="bg-blue text-white px-10 "></tfoot>
             </table>
         HTML);
-        
-
     }
 }
