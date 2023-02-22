@@ -177,4 +177,49 @@ class PrintConsole {
                 </div>
         HTML);
     }
+
+    /**
+     * Print text helper info comands.
+     */
+    public static function help(){
+
+        //get version in composer.json
+        $composer = json_decode(file_get_contents(__DIR__ . '/../../composer.json'), true);
+        $version =   'v'.$composer['version'] ?? 'v0.0.0';
+
+        render(<<<HTML
+            <table >
+                <thead title="Terminal Debug" class="bg-blue text-white px-10"></thead>
+                <tbody>
+                        <tr>
+                            <th>Execute server</th>
+                            <td>-s</td>
+                            <td>--server</td>
+                            <td>execute to server mod to await message clients.</td>
+                        </tr>
+                        <tr>
+                            <th>Execute client</th>
+                            <td>-c</td>
+                            <td>--client</td>
+                            <td>execute to client mod to send message to server.</td>
+                        </tr>
+                        <tr>
+                            <th>Add message</th>
+                            <td>-m "message"</td>
+                            <td>--message "message"</td>
+                            <td>set message from client or server response.</td>
+                        </tr>
+                        <tr>
+                            <th>Help</th>
+                            <td>-h</td>
+                            <td>--help</td>
+                            <td>show help.</td>
+                        </tr>
+                </tbody>
+                <tfoot title="$version" class="bg-blue text-white px-10 "></tfoot>
+            </table>
+        HTML);
+        
+
+    }
 }
