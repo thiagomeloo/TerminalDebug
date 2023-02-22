@@ -164,16 +164,14 @@ class PrintConsole {
 
         render(
             <<<HTML
-                <div class="my-1 w-full flex $colorClass">
-                    <div class="pt-1 w-full">
+                <div class="w-auto flex flex-1 $colorClass mt-1 mb-1 ">
+                    <div class="block w-full pt-1 ml-1">
                         {$this->variant}
                     </div>
-                    <hr class="w-full">
-                    <div class="w-full">
-                        <pre class="flex-1">
-                            {$textObj}
-                        </pre>
-                    </div>
+                    <hr>
+                    <pre class="block w-full ml-1">
+                        {$textObj}
+                    </pre>
                 </div>
         HTML);
     }
