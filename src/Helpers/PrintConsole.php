@@ -168,7 +168,7 @@ class PrintConsole {
                     <div class="pt-1 w-full">
                         {$this->variant}
                     </div>
-                    <hr>
+                    <hr class="w-full">
                     <div class="w-full">
                         <pre class="flex-1">
                             {$textObj}
