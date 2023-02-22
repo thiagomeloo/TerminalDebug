@@ -7,13 +7,16 @@ if (!function_exists('tDebug')) {
      * @param string|aray|object $element
      */
     function tDebug(string|array|object $element) {
-
-        $client = new \ThiagoMeloo\TerminalDebug\Socket\Client([
-            'host' => '127.0.0.1',
-            'port' => 8015
-        ]);
-    
-        $client->setMessage($element)->run();
+        try {
+            $client = new \ThiagoMeloo\TerminalDebug\Socket\Client([
+                'host' => '127.0.0.1',
+                'port' => 8015
+            ]);
+        
+            $client->setMessage($element)->run();
+        } catch (\Throwable $th) {
+            return;
+        }
     };
 
 }

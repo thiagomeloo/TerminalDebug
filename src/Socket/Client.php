@@ -43,7 +43,7 @@ class Client implements Runner {
 
         if ($result === false) {
             PrintConsole::client('Error: '.socket_strerror(socket_last_error($this->socket)))->error();
-            exit;
+            return false;  
         }
 
         socket_write($this->socket, $this->message, strlen($this->message));
