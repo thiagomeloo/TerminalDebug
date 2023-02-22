@@ -16,6 +16,7 @@
         "nunomaduro/termwind": "^1.12"
     },
     "require-dev": {
+        "pestphp/pest": "^1.22"
     },
     "autoload": {
         "psr-4": {
@@ -25,6 +26,13 @@
             "src/functions.php"
         ]
     },
-    "bin": ["bin/terminal-debug"]
-    
+    "bin": ["bin/terminal-debug"],
+    "config": {
+        "allow-plugins": {
+            "pestphp/pest-plugin": true
+        }
+    },
+    "scripts": {
+        "test": "./vendor/bin/pest"
+    }
 }
