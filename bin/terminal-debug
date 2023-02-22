@@ -31,7 +31,6 @@ foreach ($argv as $arg) {
  * Run server or client
  */
 if ($server) {
-
     $options = [];
     isset($message) ? $options['responseMessage'] = $message : null;
     $server = new Server($options);
@@ -45,4 +44,6 @@ if ($server) {
     ]);
 
     $client->setMessage($message ?? 'client message.')->run();
+} else {
+    PrintConsole::help();
 }
