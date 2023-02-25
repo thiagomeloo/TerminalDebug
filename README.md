@@ -1,11 +1,17 @@
 # TERMINAL DEBUG
 
+![Example](./examples/img/example1.png)
+
+----------
+
 **Terminal Debug** was born with the purpose of debugging values ​​by printing them directly to the terminal, thus keeping the dev's focus on their code most of the time.
 
 The tool is still in its early stages, so all your suggestions are welcome.
 
+
 ### Requirements
 - PHP ^8.0
+    - extension socket active  
 
 ### Install
 - In terminal execute: 
@@ -27,16 +33,15 @@ The tool is still in its early stages, so all your suggestions are welcome.
 
 ### Example
 -  To send debug message to the server you have the following options:
+    
     - Print string message:
         ```php
         <?php
-            //debug to string
             tDebug("Terminal Debug");
         ```
     - Print array
         ```php
         <?php
-            //debug to string
             tDebug([1,2,3, 4]);
         ```
     
@@ -48,37 +53,18 @@ The tool is still in its early stages, so all your suggestions are welcome.
             ];
             tDebug($obj);
         ```
-
 ### Prints
-
 - Start Server
 
-    <p align="left">
-        <img src="examples/img/exampleStartServer.png" />
-    </p>
+    ![startServer](./examples/img/exampleStartServer.png)
 
-- Received Message String
+- Receive Debug
 
-    <p align="left">
-        <img src="examples/img/exampleReceivedString.png" />
-    </p>
-
-- Received Message Array
-
-    <p align="left">
-        <img src="examples/img/exampleReceivedArray.png" />
-    </p>
-
-- Received Message Object
-
-    <p align="left">
-        <img src="examples/img/exampleReceivedObject.png" />
-    </p>
+    ![exampleDebug](./examples/img/exampleDebug.png)
 
 - Command Line Helpers
-    <p align="left">
-        <img src="examples/img/exampleCommandHelp.png" />
-    </p>
+
+    ![comandHelpers](./examples/img/exampleCommandHelp.png)
 
     
 
