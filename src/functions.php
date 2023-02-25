@@ -1,5 +1,7 @@
 <?php
 
+use ThiagoMeloo\TerminalDebug\Helpers\Dump;
+
 if (!function_exists('tDebug')) {
 
     /**
@@ -12,15 +14,9 @@ if (!function_exists('tDebug')) {
         try {
             if (!count($elements)) {
                 return false;
-            } else if (count($elements) > 1) {
-                ob_start();
-                var_dump($elements);
-                $data = ob_get_clean();
-            } else {
-                ob_start();
-                var_dump($elements[0]);
-                $data = ob_get_clean();
             }
+
+            $data = Dump::toString(...$elements);
 
             $client = new \ThiagoMeloo\TerminalDebug\Socket\Client([
                 'host' => '127.0.0.1',
