@@ -2,6 +2,8 @@
 
 namespace ThiagoMeloo\TerminalDebug\Helpers;
 
+use Symfony\Component\Console\Output\OutputInterface;
+
 use function Termwind\{render};
 
 /**
@@ -272,6 +274,12 @@ class PrintConsole
 
         //colorize (){}[]
         $code = preg_replace('/(\(|\)|\{|\}|\[|\])/', '<span class="text-blue-600">$1</span>', $code);
+
+        $lines = explode('<br>', $code);
+
+        $code = implode('<br>', array_map(function ($line) {
+            return '<span class="w-full">' . $line . '</span>';
+        }, $lines));
 
         return  $code;
     }
