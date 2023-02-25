@@ -25,6 +25,12 @@ class Client implements Runner
         $this->socket = socket_create(AF_INET, SOCK_STREAM, SOL_TCP);
     }
 
+    /**
+     * Set message to send
+     *
+     * @param String|array|object $message
+     * @return self
+     */
     public function setMessage(String|array|object $message)
     {
         if (is_array($message) || is_object($message)) {
@@ -36,6 +42,11 @@ class Client implements Runner
         return $this;
     }
 
+    /**
+     * Run client
+     *
+     * @return void
+     */
     public function run()
     {
         //hide warnings socket bind

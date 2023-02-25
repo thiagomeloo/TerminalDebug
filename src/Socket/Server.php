@@ -3,7 +3,6 @@
 namespace ThiagoMeloo\TerminalDebug\Socket;
 
 use ThiagoMeloo\TerminalDebug\Contracts\Runner;
-use ThiagoMeloo\TerminalDebug\Helpers\PrettyJson;
 use ThiagoMeloo\TerminalDebug\Helpers\PrintConsole;
 
 /**
@@ -29,6 +28,11 @@ class Server implements Runner
         $this->responseMessage = $config['responseMessage'] ?? $this->responseMessage;
     }
 
+    /**
+     * Run server
+     *
+     * @return void
+     */
     public function run()
     {
         //hide warnings socket bind
@@ -53,11 +57,7 @@ class Server implements Runner
             $client = socket_accept($this->socket);
             $data = socket_read($client, 1024);
 
-            if (PrettyJson::isJson($data)) {
-                PrintConsole::debug($data)->json();
-            } else {
-                PrintConsole::debug($data)->default();
-            }
+            PrintConsole::debug($data)->object();
 
             socket_write($client, $this->responseMessage, strlen($this->responseMessage));
             socket_close($client);
